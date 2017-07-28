@@ -40,5 +40,9 @@
     },
     "extra": {
         "contao-manager-plugin": "Jonnysp\\Vegas\\ContaoManager\\Plugin"
+    },
+    "support": {
+        "issues": "https://github.com/jonnysp/Vegas/issues",
+        "source": "https://github.com/jonnysp/Vegas"
     }
 }
