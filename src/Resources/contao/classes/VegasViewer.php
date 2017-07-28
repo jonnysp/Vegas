@@ -19,8 +19,8 @@ class VegasViewer extends ContentElement{
 
 	protected function compile() {
 		
-		$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/vegas/assets/vegas/vegas.min.js';
-		$GLOBALS['TL_CSS'][] = 		  'system/modules/vegas/assets/vegas/vegas.css';
+		$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/jonnyspvegas/vegas/vegas.min.js';
+		$GLOBALS['TL_CSS'][] = 		  'bundles/jonnyspvegas/vegas/vegas.css';
 
 		$config = '';
 
