@@ -18,8 +18,6 @@ array_insert($GLOBALS['BE_MOD']['content'], 100, array
 	)
 ));
 
-
-
 /**
  * Front end modules
  */
@@ -28,5 +26,13 @@ array_insert($GLOBALS['TL_CTE'], 1, array
 	'includes' => array
 	(
 		'vegas'    => 'VegasViewer'
+	)
+));
+
+array_insert($GLOBALS['FE_MOD'], 2, array
+(
+	'miscellaneous' => array
+	(
+		'vegas'    => 'ModuleVegas'
 	)
 ));

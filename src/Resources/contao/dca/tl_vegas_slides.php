@@ -56,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['edit'],
 				'href'                => 'act=edit',
-				'icon'                => 'edit.gif'
+				'icon'                => 'edit.svg'
 				
 			),
 			
@@ -65,21 +65,21 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['copy'],
 				'href'                => 'act=copy',
-				'icon'                => 'copy.gif'
+				'icon'                => 'copy.svg'
 			),
 
 			'cut' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['cut'],
 				'href'                => 'act=paste&amp;mode=cut',
-				'icon'                => 'cut.gif'
+				'icon'                => 'cut.svg'
 			),
 
 			'delete' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['delete'],
 				'href'                => 'act=delete',
-				'icon'                => 'delete.gif',
+				'icon'                => 'delete.svg',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 
@@ -87,13 +87,13 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['show'],
 				'href'                => 'act=show',
-				'icon'                => 'show.gif'
+				'icon'                => 'show.svg'
 			),
 
 			'toggle' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['toggle'],
-				'icon'                => 'visible.gif',
+				'icon'                => 'visible.svg',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
 				'button_callback'     => array('tl_vegas_slides', 'toggleIcon')
 			)
