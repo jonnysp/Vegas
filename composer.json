@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "jonnysp\\vegas\\": "src/"
+            "Jonnysp\\Vegas\\": "src/"
         },
         "classmap": [
             "src/Resources/contao/"
