@@ -1,0 +1,44 @@
+{
+    "name": "jonnysp/vegas",
+    "type": "contao-bundle",
+    "description": "Adds Vegas functionality to Contao 4",
+    "keywords":["slideshow","vegas", "contao"],
+    "license": "LGPL-3.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Jonny Spitzner",
+            "homepage": "https://github.com/jonnysp"
+        }
+    ],
+    "require": {
+        "php":">=5.6.0",
+        "contao/core-bundle":"^4.4"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "conflict": {
+    },
+    "autoload": {
+        "psr-4": {
+            "jonnysp\\vegas\\": "src/"
+        },
+        "classmap": [
+            "src/Resources/contao/"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "contao-manager-plugin": "Jonnysp\\Vegas\\ContaoManager\\Plugin"
+    }
+}
