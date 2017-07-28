@@ -52,7 +52,7 @@ class ModuleVegas extends Module {
 			}
 
 			if($vegas->overlay <> ''){
-				$slides['overlay']= $this->Environment->base.'system/modules/vegas/assets/vegas/overlays/'.$vegas->overlay.'.png';
+				$slides['overlay']= $this->Environment->base.'bundles/jonnyspvegas/vegas/overlays/'.$vegas->overlay.'.png';
 			}
 
 			$images = \VegasSlidesModel::findBy(array('pid=?'),array($vegas->id),array('order'=>'sorting ASC'));
