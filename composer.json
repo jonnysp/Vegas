@@ -11,11 +11,15 @@
         }
     ],
     "require": {
-        "php":">=5.6.0",
+        "php": "^5.6 || ^7.0",
         "contao/core-bundle":"^4.4"
     },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
     "conflict": {
-         "contao/core-bundle": "<4.4.1"
+        "contao/core": "*",
+        "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "autoload": {
         "psr-4": {
