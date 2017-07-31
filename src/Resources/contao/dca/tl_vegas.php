@@ -309,8 +309,3 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
     )
 );
  
-class tl_vegas extends Backend
-{
-
-
-}

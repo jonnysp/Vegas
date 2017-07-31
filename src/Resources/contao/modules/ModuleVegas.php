@@ -52,14 +52,14 @@ class ModuleVegas extends Module {
 			}
 
 			if($vegas->overlay <> ''){
-				$slides['overlay']= $this->Environment->base.'bundles/jonnyspvegas/vegas/overlays/'.$vegas->overlay.'.png';
+				$slides['overlay']= \Environment::get('base').'bundles/jonnyspvegas/vegas/overlays/'.$vegas->overlay.'.png';
 			}
 
 			$images = \VegasSlidesModel::findBy(array('pid=?'),array($vegas->id),array('order'=>'sorting ASC'));
 			if (isset($images)){
 				foreach ($images as $key => $value) {
 
-					$slide['src'] = $this->Environment->base.\FilesModel::findByPk($value->src)->path;
+					$slide['src'] = \Environment::get('base').\FilesModel::findByPk($value->src)->path;
 					$slide['align'] = $value->align;
 					$slide['valign'] = $value->valign;
 					if($value->transition <> ''){

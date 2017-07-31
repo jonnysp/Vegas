@@ -7,18 +7,18 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['vegas'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['vegas'],
 	'inputType'               => 'select',
-	'options_callback'        => array('DataContainerVegas', 'getVegas'),
+	'options_callback'        => array('tl_content_vegas', 'getVegas'),
 	'eval'                    => array('mandatory'=>true, 'chosen'=>true, 'submitOnChange'=>true),
 	'wizard' => array
 	(
-				array('DataContainerVegas', 'editVegas')
+				array('tl_content_vegas', 'editVegas')
 	),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
 
 );
 
 
-class DataContainerVegas extends Backend 
+class tl_content_vegas extends Backend 
 {
 
 	public function getVegas()
