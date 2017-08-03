@@ -7,9 +7,13 @@ class VegasViewer extends ContentElement{
 	public function generate() {
 		if(TL_MODE == 'BE') {
 			$objVegas = \VegasModel::findByPK($this->vegas);
-			$objT = new BackendTemplate('be_wildcard');
-			$objT->title =  $objVegas->title;
-			return($objT->parse());
+			
+			if (isset($objVegas)) {
+				$objTemplate = new BackendTemplate('be_wildcard');
+				$objTemplate->title =  $objVegas->title;
+				$objTemplate->wildcard = '';
+			}
+			return($objTemplate->parse());
 		}
 		
 		return(parent::generate());
