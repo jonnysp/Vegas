@@ -1,6 +1,5 @@
 <?php
 
-
 $GLOBALS['TL_DCA']['tl_content']['palettes']['vegas'] = '{type_legend},type;{vegas_legend},vegas;{protected_legend:hide},protected;{expert_legend:hide},cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['vegas'] = array
@@ -9,12 +8,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['vegas'] = array
 	'inputType'               => 'select',
 	'options_callback'        => array('tl_content_vegas', 'getVegas'),
 	'eval'                    => array('mandatory'=>true, 'chosen'=>true, 'submitOnChange'=>true),
-	'wizard' => array
-	(
-				array('tl_content_vegas', 'editVegas')
-	),
+	'wizard' 				  => array(array('tl_content_vegas', 'editVegas')),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
-
 );
 
 

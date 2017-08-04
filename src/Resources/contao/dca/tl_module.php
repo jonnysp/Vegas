@@ -1,7 +1,5 @@
 <?php 
 
-
-
 $GLOBALS['TL_DCA']['tl_module']['palettes']['vegas'] = '{title_legend},name,vegas,type;';
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['vegas'] = array
@@ -10,12 +8,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['vegas'] = array
 	'inputType'               => 'select',
 	'options_callback'        => array('tl_module_vegas', 'getVegas'),
 	'eval'                    => array('mandatory'=>true, 'chosen'=>true, 'submitOnChange'=>true,'tl_class'=>'w50'),
-	'wizard' => array
-	(
-				array('tl_module_vegas', 'editVegas')
-	),
+	'wizard' 				  => array(array('tl_module_vegas', 'editVegas')),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
-
 );
 
 class tl_module_vegas extends Backend 
