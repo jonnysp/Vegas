@@ -20,10 +20,10 @@ class tl_content_vegas extends Backend
 	{
 		$objVegas =  \VegasModel::findAll();
 		$arrVegas = array();
-		if(isset($objVegas)){
+		if( isset($objVegas)){
 			foreach ($objVegas as $itemVegas)
 			{
-				$arrVegas[$itemVegas->id] = '[ID ' . $itemVegas->id . '] - '. $itemVegas->title;
+				$arrVegas[$itemVegas->id] = $itemVegas->title . ' (ID ' . $itemVegas->id . ')';
 			}
 		}
 
