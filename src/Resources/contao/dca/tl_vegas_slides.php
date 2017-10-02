@@ -234,8 +234,14 @@ class tl_vegas_slides extends Backend{
 	
 	public function generateReferenzRow($arrRow)	{
 		$this->loadLanguageFile('tl_vegas_slides');
+		
+		$imagestring = '';
+		$imagefile = new \File(\FilesModel::findByUuid($arrRow['src'])->path,true);
+		if ($imagefile->exists()){
+			$imagestring = \Image::getHtml(\System::getContainer()->get('contao.image.image_factory')->create(TL_ROOT . '/' . rawurldecode(\FilesModel::findByUuid($arrRow['src'])->path), (new ResizeConfiguration())->setWidth(100)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX)->setZoomLevel(100))->getUrl(TL_ROOT), '', 'style="float:left;"');
+		}
 
-		return  \Image::getHtml(\System::getContainer()->get('contao.image.image_factory')->create(TL_ROOT . '/' . rawurldecode(\FilesModel::findByUuid($arrRow['src'])->path), (new ResizeConfiguration())->setWidth(100)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX)->setZoomLevel(100))->getUrl(TL_ROOT), '', 'style="float:left;"') .'
+		return  $imagestring. '
 				<table style="margin-left:110px;" class="tl_header_table">
                 <tr><th><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['title'][0].':</span></th><th>'.$arrRow['title']. '</th></tr>
  				<tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['transition'][0].':</span></td><td>'.$arrRow['transition']. '</td></tr>
