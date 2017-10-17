@@ -236,19 +236,22 @@ class tl_vegas_slides extends Backend{
 		$this->loadLanguageFile('tl_vegas_slides');
 		
 		$imagestring = '';
-		$imagefile = new \File(\FilesModel::findByUuid($arrRow['src'])->path,true);
-		if ($imagefile->exists()){
-			$imagestring = \Image::getHtml(\System::getContainer()->get('contao.image.image_factory')->create(TL_ROOT . '/' . rawurldecode(\FilesModel::findByUuid($arrRow['src'])->path), (new ResizeConfiguration())->setWidth(100)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX)->setZoomLevel(100))->getUrl(TL_ROOT), '', 'style="float:left;"');
+		$imagemodel = \FilesModel::findByUuid($arrRow['src'])->path;
+		if ($imagemodel){
+			$imagefile = new \File($imagemodel,true);
+			if ($imagefile->exists()){
+				$imagestring = \Image::getHtml(\System::getContainer()->get('contao.image.image_factory')->create(TL_ROOT . '/' . rawurldecode(\FilesModel::findByUuid($arrRow['src'])->path), (new ResizeConfiguration())->setWidth(100)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX)->setZoomLevel(100))->getUrl(TL_ROOT), '', 'style="float:left;"');
+			}
 		}
-
-		return  $imagestring. '
-				<table style="margin-left:110px;" class="tl_header_table">
-                <tr><th><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['title'][0].':</span></th><th>'.$arrRow['title']. '</th></tr>
- 				<tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['transition'][0].':</span></td><td>'.$arrRow['transition']. '</td></tr>
- 				<tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['animation'][0].':</span></td><td>'.$arrRow['animation']. '</td></tr>
- 				<tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['align'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['align']][0]. '</td></tr>
- 				<tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['valign'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['valign']][0]. '</td></tr>
-				</table>';
+		
+		return $imagestring. '
+			   <table style="margin-left:110px;" class="tl_header_table">
+               <tr><th><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['title'][0].':</span></th><th>'.$arrRow['title']. '</th></tr>
+ 			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['transition'][0].':</span></td><td>'.$arrRow['transition']. '</td></tr>
+ 			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['animation'][0].':</span></td><td>'.$arrRow['animation']. '</td></tr>
+ 			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['align'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['align']][0]. '</td></tr>
+ 			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['valign'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['valign']][0]. '</td></tr>
+			   </table>';
 	}
 
 
