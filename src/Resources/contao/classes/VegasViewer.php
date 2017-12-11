@@ -29,7 +29,7 @@ class VegasViewer extends ContentElement{
 
 		$vegas = \VegasModel::findByPK($this->vegas);
 
-		$config .= '$("'.$vegas->target.'").vegas(';
+		$config .= '$("'.html_entity_decode($vegas->target).'").vegas(';
 			$slides['preload'] = boolval($vegas->preload);
 			$slides['timer'] = boolval($vegas->timer);
 			$slides['autoplay'] = boolval($vegas->autoplay);

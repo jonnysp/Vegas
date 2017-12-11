@@ -119,7 +119,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_vegas']['target'],
             'inputType'               => 'text',
-            'eval'                    => array( 'mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+            'eval'                    => array( 'mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50', 'decodeEntities'=>false, 'allowHtml'=>false),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
 
