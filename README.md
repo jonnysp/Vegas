@@ -1,2 +1,2 @@
-# Vegas
-Adds Vegas 2 functionality to Contao 4 
+# Vegas Background Slideshow
+Adds (Vegas 2)[https://vegas.jaysalvat.com] functionality to Contao 4 
