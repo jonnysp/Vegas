@@ -1,48 +1,55 @@
 <?php
 
-/**
- *
- * Copyright (c) 2005-2022 Jonny Spitzner
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
  *
  * @license LGPL-3.0+
- */
+*/
 
-/**
- * Back end modules
- */
-array_insert($GLOBALS['BE_MOD']['vegas'], 100, array
+ use Vegas\Model\VegasModel;
+ use Vegas\Model\VegasSlidesModel;
+ use Contao\ArrayUtil;
+ use Contao\System;
+ use Symfony\Component\HttpFoundation\Request;
+
+$GLOBALS['TL_MODELS']['tl_vegas'] = VegasModel::class;
+$GLOBALS['TL_MODELS']['tl_vegas_slides'] = VegasSlidesModel::class;
+
+ArrayUtil::arrayInsert($GLOBALS['BE_MOD']['vegas'], 100, array
 (
-	'vegas' => array
-	(
-		'tables' => array('tl_vegas','tl_vegas_slides')
-	)
+	'vegas' => array('tables' => array('tl_vegas','tl_vegas_slides'))
 ));
 
 
 /**
  * Style sheet
  */
-if (TL_MODE == 'BE')
+if (System::getContainer()->get('contao.routing.scope_matcher')
+	->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))
+)  
 {
 	$GLOBALS['TL_CSS'][] = 'bundles/jonnyspvegas/vegas/vegasbe.css|static';
-}
+};
 
 
-/**
- * Front end modules
- */
-array_insert($GLOBALS['TL_CTE'], 1, array
-(
-	'includes' => array
+///**
+// * Front end modules
+// */
+ArrayUtil::arrayInsert($GLOBALS['TL_CTE'], 1, array
 	(
+		'includes' 	=> array
+			(
 		'vegas'    => 'VegasViewer'
+		)
 	)
-));
+);
 
-array_insert($GLOBALS['FE_MOD'], 2, array
-(
-	'miscellaneous' => array
+
+ArrayUtil::arrayInsert($GLOBALS['FE_MOD'], 2, array
 	(
-		'vegas'    => 'ModuleVegas'
+		'miscellaneous' => array
+		(
+			'vegas'    => 'ModuleVegas'
+		)
 	)
-));
+);

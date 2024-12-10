@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
+
+use Contao\DC_Table;
+use Contao\DataContainer;
+use Contao\Backend;
+use Contao\FilesModel;
+use Contao\Image;
+use Contao\System;
+use Contao\Image\ResizeConfiguration;
 
 /**
  * Table tl_recipes
@@ -10,15 +23,16 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 // Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_vegas',
-		'enableVersioning'            => true,
+		'dataContainer'              => DC_Table::class, 
+		'ptable'                     => 'tl_vegas',
+		'enableVersioning'           => true,
+		'markAsCopy'                 => 'title',
 		'sql' => array
 		(
 			'keys' => array
 			(
 				'id' => 'primary',
-				'pid' => 'index'
+				'pid,published' => 'index'
 			)
 		)
 	),
@@ -29,83 +43,26 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 	(
         'sorting' => array
         (
-           'mode'                    => 4,
-		   'headerFields'            => array('title','target','preload','autoplay','looop','shuffle','delay','timer','overlay','align','valign','cover','color','transition','transitionDuration','firstTransition','firstTransitionDuration','animation','animationDuration'),
+           'mode'                    => DataContainer::MODE_PARENT,
 		   'fields'                  => array('sorting'),
+		   'panelLayout'             => 'filter;search,limit',
+		   'headerFields'            => array('title','target','preload','autoplay','looop','shuffle','delay','timer','overlay','align','valign','cover','color','transition','transitionDuration','firstTransition','firstTransitionDuration','animation','animationDuration'),
+		   'defaultSearchField'      => 'title',
 		   'disableGrouping'         => true,
-		   'panelLayout'             => 'filter;sort,search,limit',
-		   'child_record_callback'   => array('tl_vegas_slides', 'generateReferenzRow')
+			'child_record_callback'   => array('tl_vegas_slides', 'listVegasSlides')
         ),
-
-
-		'global_operations' => array
+		'label' => array
 		(
-			'all' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-				'href'                => 'act=select',
-				'class'               => 'header_edit_all',
-				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-			)
-		),
-		
-		'operations' => array
-		(
-
-			'edit' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['edit'],
-				'href'                => 'act=edit',
-				'icon'                => 'edit.svg'
-				
-			),
-			
-
-			'copy' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['copy'],
-				'href'                => 'act=copy',
-				'icon'                => 'copy.svg'
-			),
-
-			'cut' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['cut'],
-				'href'                => 'act=paste&amp;mode=cut',
-				'icon'                => 'cut.svg'
-			),
-
-			'delete' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['delete'],
-				'href'                => 'act=delete',
-				'icon'                => 'delete.svg',
-				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-			),
-
-			'show' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['show'],
-				'href'                => 'act=show',
-				'icon'                => 'show.svg'
-			),
-
-			'toggle' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_vegas_slides']['toggle'],
-				'icon'                => 'visible.svg',
-				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('tl_vegas_slides', 'toggleIcon')
-			)
+			'fields'                  => array('title'),
+			'format'                  => '%s'
 		)
+
 	),
 
 	// Palettes
 	'palettes' => array
 	(
-
 		'default'         => '{general_legend},title,published,src;{display_legend},align,valign;{transition_legend},transition,transitionDuration;{animation_legend},animation,animationDuration;',
-
 	),
 
 
@@ -119,17 +76,17 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 
 		'pid' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT NULL default 0"
 		),
 		
 		'sorting' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT NULL default 0"
 		),
 
 		'tstamp' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => ['type' => 'integer','notnull' => false, 'unsigned' => true,'default' => '0','fixed' => true]
 		),
 		'title' => array
 		(
@@ -143,8 +100,8 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_vegas_slides']['src'],
 			'inputType'               => 'fileTree',
-			'eval'                    => array( 'tl_class'=>'clr','mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
-			'sql'                     => "binary(16) NULL",
+			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'%contao.image.valid_extensions%'),
+			'sql'                     => ['type' => 'binary','notnull' => false,'length' => 16,'fixed' => true]
 		),
 
         'transition' => array
@@ -197,8 +154,10 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_vegas_slides']['toggle'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "char(1) NOT NULL default ''"
+			'toggle'                  => true,
+			'filter'                  => true,
+			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true, 'tl_class'=>'w50 m12'),
+			'sql'                     => array('type' => 'boolean', 'default' => false)
 		),
 
 		'align' => array
@@ -228,22 +187,40 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 	)
 );
 
-use Contao\Image\ResizeConfiguration;
+
 
 class tl_vegas_slides extends Backend{
 	
-	public function generateReferenzRow($arrRow)	{
+	public function listVegasSlides($arrRow)	{
 		$this->loadLanguageFile('tl_vegas_slides');
 		
 		$imagestring = '';
-		$imagemodel = \FilesModel::findByUuid($arrRow['src'])->path;
-		if ($imagemodel){
-			$imagefile = new \File($imagemodel,true);
-			if ($imagefile->exists()){
-				$imagestring = \Image::getHtml(\System::getContainer()->get('contao.image.image_factory')->create(TL_ROOT . '/' . rawurldecode(\FilesModel::findByUuid($arrRow['src'])->path), (new ResizeConfiguration())->setWidth(100)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX)->setZoomLevel(100))->getUrl(TL_ROOT), '', 'style="float:left;"');
-			}
-		}
+
+		$objFile = FilesModel::findByUuid($arrRow['src']);
+		$projectDir = System::getContainer()->getParameter('kernel.project_dir');
+		if ($objFile !== null && file_exists($projectDir . '/' . $objFile->path))
+		{
 		
+			if ($objFile !== null && file_exists($projectDir . '/' . $objFile->path))
+			{
+				$imagestring = Image::getHtml(
+					System::getContainer()
+						->get('contao.image.factory')
+						->create(
+							$projectDir . '/' . $objFile->path, 
+							(new ResizeConfiguration())
+								->setWidth(100)
+								->setHeight(80)
+								->setMode(ResizeConfiguration::MODE_BOX)
+								->setZoomLevel(100)
+						)
+						->getUrl($projectDir), '', 'style="float:left;"'
+					);
+			}
+	
+		}
+
+	
 		return $imagestring. '
 			   <table style="margin-left:110px;" class="tl_header_table">
                <tr><th><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['title'][0].':</span></th><th>'.$arrRow['title']. '</th></tr>
@@ -252,53 +229,6 @@ class tl_vegas_slides extends Backend{
  			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['align'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['align']][0]. '</td></tr>
  			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['valign'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['valign']][0]. '</td></tr>
 			   </table>';
-	}
-
-
-	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
-	{
-		if (strlen(Input::get('tid')))
-		{
-			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
-			$this->redirect($this->getReferer());
-		}
-
-		$href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
-
-		if (!$row['published'])
-		{
-			$icon = 'invisible.gif';
-		}
-
-		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-	}
-
-
-	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
-	{
-
-		Input::setGet('id', $intId);
-		Input::setGet('act', 'toggle');
-
-		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_vegas_slides']['fields']['published']['save_callback']))
-		{
-			foreach ($GLOBALS['TL_DCA']['tl_vegas_slides']['fields']['published']['save_callback'] as $callback)
-			{
-				if (is_array($callback))
-				{
-					$this->import($callback[0]);
-					$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, ($dc ?: $this));
-				}
-				elseif (is_callable($callback))
-				{
-					$blnVisible = $callback($blnVisible, ($dc ?: $this));
-				}
-			}
-		}
-
-		// Update the database
-		$this->Database->prepare("UPDATE tl_vegas_slides SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")->execute($intId);
 
 	}
 

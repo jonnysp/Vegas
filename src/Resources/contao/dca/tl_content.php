@@ -1,13 +1,25 @@
 <?php
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['vegas'] = '{type_legend},type;{vegas_legend},vegas;{protected_legend:hide},protected;{expert_legend:hide},cssID,space;{invisible_legend:hide},invisible,start,stop';
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
 
+use Contao\System;
+use Contao\Backend;
+use Vegas\Model\VegasModel;
+use Contao\DataContainer;
+use Contao\StringUtil;
+use Contao\Image;
+
+$GLOBALS['TL_DCA']['tl_content']['palettes']['vegas'] = '{type_legend},type;{vegas_legend},vegas;{protected_legend:hide},protected;{expert_legend:hide},cssID,space;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['fields']['vegas'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['vegas'],
 	'inputType'               => 'select',
 	'options_callback'        => array('tl_content_vegas', 'getVegas'),
-	'eval'                    => array('mandatory'=>true, 'chosen'=>true, 'submitOnChange'=>true),
+	'eval'                    => array('includeBlankOption' => true,'mandatory'=>true, 'chosen'=>true, 'submitOnChange'=>true),
 	'wizard' 				  => array(array('tl_content_vegas', 'editVegas')),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
 );
@@ -15,25 +27,29 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['vegas'] = array
 
 class tl_content_vegas extends Backend 
 {
-
-	public function getVegas()
+	public function getVegas(): array
 	{
-		$objVegas =  \VegasModel::findAll();
 		$arrVegas = array();
-		if( isset($objVegas)){
+		
+		if ($objVegas = VegasModel::findAll())
+		{
 			foreach ($objVegas as $itemVegas)
 			{
-				$arrVegas[$itemVegas->id] = $itemVegas->title . ' (ID ' . $itemVegas->id . ')';
+				$arrVegas[$itemVegas->id] =' [ID ' . $itemVegas->id . '] - '. $itemVegas->title  ;
 			}
 		}
 
 		return $arrVegas;
 	}
 
-	public function editVegas(DataContainer $dc)
+	public function editVegas(DataContainer $dc): string
 	{
 		$this->loadLanguageFile('tl_vegas');
-		return ($dc->value < 1) ? '' : ' <a href="contao/main.php?do=vegas&amp;act=edit&amp;id=' . $dc->value . '&amp;popup=1&amp;nb=1&amp;rt=' . REQUEST_TOKEN . '" title="' . sprintf(StringUtil::specialchars($GLOBALS['TL_LANG']['tl_vegas']['edit'][1]), $dc->value) . '" onclick="Backend.openModalIframe({\'title\':\'' . StringUtil::specialchars(str_replace("'", "\\'", sprintf($GLOBALS['TL_LANG']['tl_vegas']['edit'][1], $dc->value))) . '\',\'url\':this.href});return false">' . Image::getHtml('alias.svg', $GLOBALS['TL_LANG']['tl_vegas']['edit'][0]) . '</a>';
+		$title = sprintf($GLOBALS['TL_LANG']['tl_vegas']['editheader'][1], $dc->value);
+		$href = System::getContainer()->get('router')->generate('contao_backend', array('do'=>'vegas', 'table'=>'tl_vegas','act'=>'edit', 'id'=>$dc->value , 'popup'=>'1', 'nb'=>'1'));
+
+		return ' <a href="' . StringUtil::specialcharsUrl($href) . '" title="' . StringUtil::specialchars($title) . '" onclick="Backend.openModalIframe({\'title\':\'' . StringUtil::specialchars(str_replace("'", "\\'", $title)) . '\',\'url\':this.href});return false">' . Image::getHtml('alias.svg', $title) . '</a>';
+
 	}
 
 }

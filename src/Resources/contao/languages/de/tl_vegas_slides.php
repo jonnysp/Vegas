@@ -1,9 +1,16 @@
 <?php
 
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
+
 /**
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_vegas_slides']['title']       = array('Titel', 'Geben Sie hier den Titel ein.');
+
 $GLOBALS['TL_LANG']['tl_vegas_slides']['src']		  = array('Bild','');
 $GLOBALS['TL_LANG']['tl_vegas_slides']['transition'] 	= array('Übergang','');
 $GLOBALS['TL_LANG']['tl_vegas_slides']['transitionDuration'] = array('Übergangs Dauer','');
@@ -89,5 +96,6 @@ $GLOBALS['TL_LANG']['tl_vegas_slides']['copy']   = array('Bild kopieren', 'Bild 
 $GLOBALS['TL_LANG']['tl_vegas_slides']['cut']    = array('Bild verschieben', 'Verschiebe Bild ID %s');
 $GLOBALS['TL_LANG']['tl_vegas_slides']['delete'] = array('Bild löschen','Bild ID %s löschen');
 
-$GLOBALS['TL_LANG']['tl_vegas_slides']['pastenew'] = array( 'Ein neues Bild anlegen');
+$GLOBALS['TL_LANG']['tl_vegas_slides']['pastenew'] = array( 'Ein neues Bild anlegen','Ein neues Bild anlegen');
 $GLOBALS['TL_LANG']['tl_vegas_slides']['toggle'] = array('AN/AUS','An / Aus');
+

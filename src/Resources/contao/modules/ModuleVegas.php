@@ -1,20 +1,49 @@
 <?php
 
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
+
+use Contao\BackendTemplate;
+use Contao\StringUtil;
+use Contao\System;
+use Contao\FilesModel;
+use Contao\File;
+use Contao\Environment;
+use Contao\Module;
+use Vegas\Model\VegasModel;
+use Vegas\Model\VegasSlidesModel;
+
+
 class ModuleVegas extends Module {
 	
 	protected $strTemplate = 'mod_vegas';
 	
-	public function generate() {
-		if(TL_MODE == 'BE') {
-			$objVegas = \VegasModel::findByPK($this->vegas);
-			$objT = new BackendTemplate('be_wildcard');
-			$objT->wildcard = '### Vegas ###';
-			return($objT->parse());
+	public function generate(): string
+	{
+		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
+
+		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+		{
+			$objVegas = VegasModel::findByPK($this->vegas);
+			$objTemplate = new BackendTemplate('be_wildcard');
+			$objTemplate->wildcard = '### Vegas ###';
+
+			if (null !== $objVegas)
+			{
+				$objTemplate->title =  $objVegas->title;
+			}
+			
+			return($objTemplate->parse());
 		}
 		
-		return(parent::generate());
+		return parent::generate();
 	}
-	
+
+
+
 	protected function compile() {
 
 		$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/jonnyspvegas/vegas/vegas.min.js';
@@ -22,7 +51,11 @@ class ModuleVegas extends Module {
 
 		$config = '';
 
-		$vegas = \VegasModel::findByPK($this->vegas);
+		if (null === ($vegas = VegasModel::findByPK($this->vegas)))
+		{
+			$this->Template->vegasconfig = $config;
+			return;
+		}
 
 		$config .= '$("'.html_entity_decode($vegas->target).'").vegas(';
 			$slides['preload'] = boolval($vegas->preload);
@@ -52,14 +85,15 @@ class ModuleVegas extends Module {
 			}
 
 			if($vegas->overlay <> ''){
-				$slides['overlay']= \Environment::get('base').'bundles/jonnyspvegas/vegas/overlays/'.$vegas->overlay.'.png';
+				$slides['overlay']= Environment::get('base').'bundles/jonnyspvegas/vegas/overlays/'.$vegas->overlay.'.png';
 			}
 
-			$images = \VegasSlidesModel::findBy(array('pid=?', 'published=?'),array($vegas->id, '1'),array('order'=>'sorting ASC'));
-			if (isset($images)){
+			$images = VegasSlidesModel::findBy(array('pid=?', 'published=?'),array($vegas->id, '1'),array('order'=>'sorting ASC'));
+			if (null !== $images)
+			{
 				foreach ($images as $key => $value) {
 
-					$slide['src'] = \Environment::get('base').\FilesModel::findByPk($value->src)->path;
+					$slide['src'] = Environment::get('base').FilesModel::findByPk($value->src)->path;
 					$slide['align'] = $value->align;
 					$slide['valign'] = $value->valign;
 					if($value->transition <> ''){
@@ -74,12 +108,12 @@ class ModuleVegas extends Module {
 				}
 			}
 			$config .= json_encode($slides);
+			
 			unset($slides);
 		
 		$config .='	);';
 
 		$this->Template->vegasconfig = $config;
-
 	}
 }
 

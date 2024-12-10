@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
+
 namespace Jonnysp\Vegas\ContaoManager;
 
 use Jonnysp\Vegas\JonnyspVegas;
@@ -11,6 +17,9 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 
 class Plugin implements BundlePluginInterface
 {
+    /**
+     * {@inheritdoc}
+    */
     public function getBundles(ParserInterface $parser)
     {
         return [

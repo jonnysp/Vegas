@@ -1,29 +1,45 @@
 <?php
 
+/*
+ * Copyright (c) 2005-2024 Jonny Spitzner
+ *
+ * @license LGPL-3.0+
+*/
+
+use Contao\DC_Table;
+use Contao\DataContainer;
+
+/**
+ * Table tl_vegas
+ */
 $GLOBALS['TL_DCA']['tl_vegas'] = array
 (
  
     // Config
     'config' => array
     (
-        'dataContainer'               => 'Table',
+        'dataContainer'               => DC_Table::class,
         'ctable'                      => array('tl_vegas_slides'),
+        'markAsCopy'                  => 'title',
         'enableVersioning'            => true,
-        'sql'                         => array (
-                'keys'                => array(
-                'id'                  => 'primary'
+        'sql' => array 
+        (
+            'keys' => array
+                (
+                    'id' => 'primary'
                 )
-            )
+        )
     ),
  
+
     // List
     'list' => array
     (
         'sorting' => array
         (
-            'mode'                    => 2,
+            'mode'                    => 1,
             'disableGrouping'         => true,
-            //'fields'                  => array('title'),
+            'fields'                  => array('title'),
             'panelLayout'             => 'filter;search,limit'
         ),
  
@@ -35,56 +51,44 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
  
         ),
  
-        'global_operations' => array
-        (
-            'all' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            )
-        ),
- 
-        'operations' => array
-        (
-            'editheader' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['editheader'],
-                'href'                => 'table=tl_vegas_slides',
-                'icon'                => 'sizes.svg'
-            ),
 
-            'edit' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['edit'],
-                'href'                => 'act=edit',
-                'icon'                => 'edit.svg'
-            ),
- 
-            'copy' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['copy'],
-                'href'                => 'act=copy',
-                'icon'                => 'copy.svg'
-            ),
- 
-            'delete' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['delete'],
-                'href'                => 'act=delete',
-                'icon'                => 'delete.svg',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-            ),
- 
-            'show' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['show'],
-                'href'                => 'act=show',
-                'icon'                => 'show.svg'
-            )
+       'operations' => array
+       (
+           'edit' => array
+           (
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['edit'],
+               'href'                => 'act=edit',
+               'icon'                => 'edit.svg'
+           ),            
+           'children' => array
+           (
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['editheader'],
+               'href'                => 'table=tl_vegas_slides',
+               'icon'                => 'sizes.svg'
+           ),
 
-        )
+           'copy' => array
+           (
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['copy'],
+               'href'                => 'act=copy',
+               'icon'                => 'copy.svg'
+           ),
+           'delete' => array
+           (
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['delete'],
+               'href'                => 'act=delete',
+               'icon'                => 'delete.svg',
+               'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+           ),
+
+           'show' => array
+           (
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['show'],
+               'href'                => 'act=show',
+               'icon'                => 'show.svg'
+           )
+
+       )
     ),
  
     // Palettes
@@ -129,7 +133,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
             'inputType'               => 'checkbox',
             'isBoolean'               => true,
             'eval'                    => array( 'tl_class'=>'w50'),
-            'sql'                     => "char(1) NOT NULL default '0'"
+            'sql'                     => array('type' => 'boolean', 'default' => 0)
         ),
       
         'timer' => array
@@ -138,7 +142,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
             'inputType'               => 'checkbox',
             'isBoolean'               => true,
             'eval'                    => array( 'tl_class'=>'w50'),
-            'sql'                     => "char(1) NOT NULL default '1'"
+            'sql'                     => array('type' => 'boolean', 'default' => 1)
         ),
       
         'autoplay' => array
@@ -147,7 +151,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
             'inputType'               => 'checkbox',
             'isBoolean'               => true,
             'eval'                    => array( 'tl_class'=>'w50'),
-            'sql'                     => "char(1) NOT NULL default '1'"
+            'sql'                     => array('type' => 'boolean', 'default' => 1)
         ),
       
         'looop' => array
@@ -156,7 +160,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
             'inputType'               => 'checkbox',
             'isBoolean'               => true,
             'eval'                    => array( 'tl_class'=>'w50'),
-            'sql'                     => "char(1) NOT NULL default '1'"
+            'sql'                     => array('type' => 'boolean', 'default' => 1)
         ),
       
         'shuffle' => array
@@ -165,7 +169,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
             'inputType'               => 'checkbox',
             'isBoolean'               => true,
             'eval'                    => array( 'tl_class'=>'w50'),
-            'sql'                     => "char(1) NOT NULL default '0'"
+            'sql'                     => array('type' => 'boolean', 'default' => 0)
         ),    
 
         'delay' => array
