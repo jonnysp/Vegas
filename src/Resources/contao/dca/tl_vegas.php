@@ -62,7 +62,7 @@ $GLOBALS['TL_DCA']['tl_vegas'] = array
            ),            
            'children' => array
            (
-               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['editheader'],
+               'label'               => &$GLOBALS['TL_LANG']['tl_vegas']['children'],
                'href'                => 'table=tl_vegas_slides',
                'icon'                => 'sizes.svg'
            ),

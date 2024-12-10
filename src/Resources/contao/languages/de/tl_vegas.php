@@ -111,12 +111,14 @@ $GLOBALS['TL_LANG']['tl_vegas']['animation_legend'] = 'Animationseinstellungen';
  * Buttons
  */
 $GLOBALS['TL_LANG']['tl_vegas']['editheader']   = array('Slideshow bearbeiten', 'Slideshow bearbeiten'); 
-$GLOBALS['TL_LANG']['tl_vegas']['new']    = array('Neue Slideshow', 'Eine neue Slideshow anlegen');
+$GLOBALS['TL_LANG']['tl_vegas']['new']    = array('Neue Slideshow', 'Eine neue Slideshow erstellen');
 $GLOBALS['TL_LANG']['tl_vegas']['show']   = array('Slideshow details', 'Details der Slideshow ID %s anzeigen');
 $GLOBALS['TL_LANG']['tl_vegas']['edit']   = array('Slideshow bearbeiten', 'Slideshow ID %s bearbeiten'); 
 $GLOBALS['TL_LANG']['tl_vegas']['copy']   = array('Slideshow kopieren', 'Slideshow ID %s kopieren');
 $GLOBALS['TL_LANG']['tl_vegas']['delete'] = array('Slideshow löschen','Slideshow ID %s löschen');
+$GLOBALS['TL_LANG']['tl_vegas']['children'] = array('Bilder bearbeiten','Bilder der Slideshow ID %s bearbeiten');
 
-$GLOBALS['TL_LANG']['tl_vegas']['pastenew'] = array( 'Eine neue Slideshow anlegen');
+
+$GLOBALS['TL_LANG']['tl_vegas']['pastenew'] = array( 'Eine neue Slideshow erstellen','Eine neue Slideshow erstellen');
 
 

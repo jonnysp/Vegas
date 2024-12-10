@@ -115,6 +115,7 @@ $GLOBALS['TL_LANG']['tl_vegas']['show']   = array('Slideshow details', 'Show det
 $GLOBALS['TL_LANG']['tl_vegas']['edit']   = array('Slideshow edit', 'Slideshow ID %s edit'); 
 $GLOBALS['TL_LANG']['tl_vegas']['copy']   = array('Slideshow copy', 'Slideshow ID %s copy');
 $GLOBALS['TL_LANG']['tl_vegas']['delete'] = array('Slideshow delete','Slideshow ID %s delete');
+$GLOBALS['TL_LANG']['tl_vegas']['children'] = array('Edit images','Edit images of the slideshow ID %s');
 
 $GLOBALS['TL_LANG']['tl_vegas']['pastenew'] = array( 'Create a new slideshow', 'Create a new slideshow');
 
