@@ -18,9 +18,9 @@ use Vegas\Model\VegasSlidesModel;
 
 
 class ModuleVegas extends Module {
-	
+
 	protected $strTemplate = 'mod_vegas';
-	
+
 	public function generate(): string
 	{
 		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
@@ -35,10 +35,10 @@ class ModuleVegas extends Module {
 			{
 				$objTemplate->title =  $objVegas->title;
 			}
-			
+
 			return($objTemplate->parse());
 		}
-		
+
 		return parent::generate();
 	}
 
@@ -46,7 +46,6 @@ class ModuleVegas extends Module {
 
 	protected function compile() {
 
-		$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/jonnyspvegas/vegas/vegas.min.js';
 		$GLOBALS['TL_CSS'][] = 		  'bundles/jonnyspvegas/vegas/vegas.css';
 
 		$config = '';
@@ -57,7 +56,7 @@ class ModuleVegas extends Module {
 			return;
 		}
 
-		$config .= '$("'.html_entity_decode($vegas->target).'").vegas(';
+		$config .= 'vegas("'.html_entity_decode($vegas->target).'",';
 			$slides['preload'] = boolval($vegas->preload);
 			$slides['timer'] = boolval($vegas->timer);
 			$slides['autoplay'] = boolval($vegas->autoplay);
@@ -71,7 +70,7 @@ class ModuleVegas extends Module {
 			$slides['cover'] = ($vegas->cover =='true' || $vegas->cover == 'false') ? boolval($vegas->cover) : $vegas->cover ;
 			$slides['transitionDuration'] = (is_numeric($vegas->transitionDuration)) ? intval($vegas->transitionDuration) : $vegas->transitionDuration;
 			$slides['animationDuration'] = (is_numeric($vegas->animationDuration)) ? intval($vegas->animationDuration) : $vegas->animationDuration;
-			
+
 			if($vegas->firstTransition <> ''){
 				$slides['firstTransition'] = (is_numeric($vegas->firstTransition)) ? intval($vegas->firstTransition) : $vegas->firstTransition;
 			}
@@ -108,9 +107,9 @@ class ModuleVegas extends Module {
 				}
 			}
 			$config .= json_encode($slides);
-			
+
 			unset($slides);
-		
+
 		$config .='	);';
 
 		$this->Template->vegasconfig = $config;

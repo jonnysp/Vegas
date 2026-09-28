@@ -1,3 +1,17 @@
+:root {
+    --vegas-timer-color:        white;
+    --vegas-kenburns-scale:     1.5;
+    --vegas-kenburns-translate: 10%;
+    --vegas-blur-value:         32px;
+    --vegas-swirl-degree:       35deg;
+    --vegas-swirl-scale:        2;
+    --vegas-zoom-scale:         2;
+}
+
+/* -------------------------------------------------------------------------
+ * Base
+ * ---------------------------------------------------------------------- */
+
 .vegas-overlay,
 .vegas-content-scrollable,
 .vegas-timer,
@@ -22,7 +36,7 @@
 
 .vegas-overlay {
     opacity: .5;
-    background: transparent url("./overlays/02.png") center center repeat;
+    background: transparent url('./overlays/02.png') center center repeat;
 }
 
 .vegas-timer {
@@ -34,7 +48,7 @@
 .vegas-timer-progress {
     width: 0%;
     height: 100%;
-    background: white;
+    background: var(--vegas-timer-color);
     transition: width ease-out;
 }
 
@@ -76,49 +90,12 @@ body.vegas-container > .vegas-slide {
     z-index: -1;
 }
 
-/* Target Safari IOS7+ in order to add 76px */
-/*******************************************/
-/* blur transition */
-/*******************************************/
-.vegas-transition-blur,
-.vegas-transition-blur2 {
-    opacity: 0;
-    filter: blur(32px) brightness(1.01);
-}
+/* -------------------------------------------------------------------------
+ * Transitions
+ * ---------------------------------------------------------------------- */
 
-.vegas-transition-blur-in,
-.vegas-transition-blur2-in {
-    opacity: 1;
-    filter: blur(0px) brightness(1.01);
-}
+/* fade */
 
-.vegas-transition-blur2-out {
-    opacity: 0;
-}
-
-/*******************************************/
-/* burn transition */
-/*******************************************/
-.vegas-transition-burn,
-.vegas-transition-burn2 {
-    opacity: 0;
-    filter: contrast(1000%) saturate(1000%);
-}
-
-.vegas-transition-burn-in,
-.vegas-transition-burn2-in {
-    opacity: 1;
-    filter: contrast(100%) saturate(100%);
-}
-
-.vegas-transition-burn2-out {
-    opacity: 0;
-    filter: contrast(1000%) saturate(1000%);
-}
-
-/*******************************************/
-/* fade transition */
-/*******************************************/
 .vegas-transition-fade,
 .vegas-transition-fade2 {
     opacity: 0;
@@ -133,9 +110,26 @@ body.vegas-container > .vegas-slide {
     opacity: 0;
 }
 
-/*******************************************/
-/* flash transition */
-/*******************************************/
+/* blur */
+
+.vegas-transition-blur,
+.vegas-transition-blur2 {
+    opacity: 0;
+    filter: blur(var(--vegas-blur-value)) brightness(1.01);
+}
+
+.vegas-transition-blur-in,
+.vegas-transition-blur2-in {
+    opacity: 1;
+    filter: blur(0px) brightness(1.01);
+}
+
+.vegas-transition-blur2-out {
+    opacity: 0;
+}
+
+/* flash */
+
 .vegas-transition-flash,
 .vegas-transition-flash2 {
     opacity: 0;
@@ -153,9 +147,8 @@ body.vegas-container > .vegas-slide {
     filter: brightness(25);
 }
 
-/*******************************************/
-/* negative transition */
-/*******************************************/
+/* negative */
+
 .vegas-transition-negative,
 .vegas-transition-negative2 {
     opacity: 0;
@@ -173,26 +166,27 @@ body.vegas-container > .vegas-slide {
     filter: invert(100%);
 }
 
-/*******************************************/
-/* slideDown transition */
-/*******************************************/
-.vegas-transition-slideDown,
-.vegas-transition-slideDown2 {
-    transform: translateY(-100%);
+/* burn */
+
+.vegas-transition-burn,
+.vegas-transition-burn2 {
+    opacity: 0;
+    filter: contrast(1000%) saturate(1000%);
 }
 
-.vegas-transition-slideDown-in,
-.vegas-transition-slideDown2-in {
-    transform: translateY(0%);
+.vegas-transition-burn-in,
+.vegas-transition-burn2-in {
+    opacity: 1;
+    filter: contrast(100%) saturate(100%);
 }
 
-.vegas-transition-slideDown2-out {
-    transform: translateY(100%);
+.vegas-transition-burn2-out {
+    opacity: 0;
+    filter: contrast(1000%) saturate(1000%);
 }
 
-/*******************************************/
-/* slideLeft transition */
-/*******************************************/
+/* slideLeft */
+
 .vegas-transition-slideLeft,
 .vegas-transition-slideLeft2 {
     transform: translateX(100%);
@@ -207,9 +201,8 @@ body.vegas-container > .vegas-slide {
     transform: translateX(-100%);
 }
 
-/*******************************************/
-/* slideRight transition */
-/*******************************************/
+/* slideRight */
+
 .vegas-transition-slideRight,
 .vegas-transition-slideRight2 {
     transform: translateX(-100%);
@@ -224,9 +217,8 @@ body.vegas-container > .vegas-slide {
     transform: translateX(100%);
 }
 
-/*******************************************/
-/* slideUp transition */
-/*******************************************/
+/* slideUp */
+
 .vegas-transition-slideUp,
 .vegas-transition-slideUp2 {
     transform: translateY(100%);
@@ -241,49 +233,24 @@ body.vegas-container > .vegas-slide {
     transform: translateY(-100%);
 }
 
-/*******************************************/
-/* swirlLeft transition */
-/*******************************************/
-.vegas-transition-swirlLeft,
-.vegas-transition-swirlLeft2 {
-    transform: scale(2) rotate(35deg);
-    opacity: 0;
+/* slideDown */
+
+.vegas-transition-slideDown,
+.vegas-transition-slideDown2 {
+    transform: translateY(-100%);
 }
 
-.vegas-transition-swirlLeft-in,
-.vegas-transition-swirlLeft2-in {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
+.vegas-transition-slideDown-in,
+.vegas-transition-slideDown2-in {
+    transform: translateY(0%);
 }
 
-.vegas-transition-swirlLeft2-out {
-    transform: scale(2) rotate(-35deg);
-    opacity: 0;
+.vegas-transition-slideDown2-out {
+    transform: translateY(100%);
 }
 
-/*******************************************/
-/* swirlRight transition */
-/*******************************************/
-.vegas-transition-swirlRight,
-.vegas-transition-swirlRight2 {
-    transform: scale(2) rotate(-35deg);
-    opacity: 0;
-}
+/* zoomIn */
 
-.vegas-transition-swirlRight-in,
-.vegas-transition-swirlRight2-in {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-}
-
-.vegas-transition-swirlRight2-out {
-    transform: scale(2) rotate(35deg);
-    opacity: 0;
-}
-
-/*******************************************/
-/* zoomIn transition */
-/*******************************************/
 .vegas-transition-zoomIn,
 .vegas-transition-zoomIn2 {
     transform: scale(0);
@@ -297,16 +264,15 @@ body.vegas-container > .vegas-slide {
 }
 
 .vegas-transition-zoomIn2-out {
-    transform: scale(2);
+    transform: scale(var(--vegas-zoom-scale));
     opacity: 0;
 }
 
-/*******************************************/
-/* zoomOut transition */
-/*******************************************/
+/* zoomOut */
+
 .vegas-transition-zoomOut,
 .vegas-transition-zoomOut2 {
-    transform: scale(2);
+    transform: scale(var(--vegas-zoom-scale));
     opacity: 0;
 }
 
@@ -321,146 +287,141 @@ body.vegas-container > .vegas-slide {
     opacity: 0;
 }
 
-/*******************************************/
-/* kenburns animation */
-/*******************************************/
+/* swirlLeft */
+
+.vegas-transition-swirlLeft,
+.vegas-transition-swirlLeft2 {
+    transform: scale(var(--vegas-swirl-scale)) rotate(var(--vegas-swirl-degree));
+    opacity: 0;
+}
+
+.vegas-transition-swirlLeft-in,
+.vegas-transition-swirlLeft2-in {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+}
+
+.vegas-transition-swirlLeft2-out {
+    transform: scale(var(--vegas-swirl-scale)) rotate(calc(-1 * var(--vegas-swirl-degree)));
+    opacity: 0;
+}
+
+/* swirlRight */
+
+.vegas-transition-swirlRight,
+.vegas-transition-swirlRight2 {
+    transform: scale(var(--vegas-swirl-scale)) rotate(calc(-1 * var(--vegas-swirl-degree)));
+    opacity: 0;
+}
+
+.vegas-transition-swirlRight-in,
+.vegas-transition-swirlRight2-in {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+}
+
+.vegas-transition-swirlRight2-out {
+    transform: scale(var(--vegas-swirl-scale)) rotate(var(--vegas-swirl-degree));
+    opacity: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Animations (Ken Burns)
+ * ---------------------------------------------------------------------- */
+
 .vegas-animation-kenburns {
-    animation: kenburns ease-out;
+    animation: vegas-kenburns ease-out;
 }
 
-@keyframes kenburns {
-    0% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
+@keyframes vegas-kenburns {
+    0%   { transform: scale(var(--vegas-kenburns-scale)); }
+    100% { transform: scale(1); }
 }
 
-/*******************************************/
-/* kenburnsDownLeft animation */
-/*******************************************/
-.vegas-animation-kenburnsDownLeft {
-    animation: kenburnsDownLeft ease-out;
-}
+/* kenburnsUp */
 
-@keyframes kenburnsDownLeft {
-    0% {
-        transform: scale(1.5) translate(10%, -10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsDownRight animation */
-/*******************************************/
-.vegas-animation-kenburnsDownRight {
-    animation: kenburnsDownRight ease-out;
-}
-
-@keyframes kenburnsDownRight {
-    0% {
-        transform: scale(1.5) translate(-10%, -10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsDown animation */
-/*******************************************/
-.vegas-animation-kenburnsDown {
-    animation: kenburnsDown ease-out;
-}
-
-@keyframes kenburnsDown {
-    0% {
-        transform: scale(1.5) translate(0, -10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsLeft animation */
-/*******************************************/
-.vegas-animation-kenburnsLeft {
-    animation: kenburnsLeft ease-out;
-}
-
-@keyframes kenburnsLeft {
-    0% {
-        transform: scale(1.5) translate(10%, 0);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsRight animation */
-/*******************************************/
-.vegas-animation-kenburnsRight {
-    animation: kenburnsRight ease-out;
-}
-
-@keyframes kenburnsRight {
-    0% {
-        transform: scale(1.5) translate(-10%, 0);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsUpLeft animation */
-/*******************************************/
-.vegas-animation-kenburnsUpLeft {
-    animation: kenburnsUpLeft ease-out;
-}
-
-@keyframes kenburnsUpLeft {
-    0% {
-        transform: scale(1.5) translate(10%, 10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsUpRight animation */
-/*******************************************/
-.vegas-animation-kenburnsUpRight {
-    animation: kenburnsUpRight ease-out;
-}
-
-@keyframes kenburnsUpRight {
-    0% {
-        transform: scale(1.5) translate(-10%, 10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
-}
-
-/*******************************************/
-/* kenburnsUp animation */
-/*******************************************/
 .vegas-animation-kenburnsUp {
-    animation: kenburnsUp ease-out;
+    animation: vegas-kenburnsUp ease-out;
 }
 
-@keyframes kenburnsUp {
-    0% {
-        transform: scale(1.5) translate(0, 10%);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
+@keyframes vegas-kenburnsUp {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(0, var(--vegas-kenburns-translate)); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsDown */
+
+.vegas-animation-kenburnsDown {
+    animation: vegas-kenburnsDown ease-out;
+}
+
+@keyframes vegas-kenburnsDown {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(0, calc(-1 * var(--vegas-kenburns-translate))); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsLeft */
+
+.vegas-animation-kenburnsLeft {
+    animation: vegas-kenburnsLeft ease-out;
+}
+
+@keyframes vegas-kenburnsLeft {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(var(--vegas-kenburns-translate), 0); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsRight */
+
+.vegas-animation-kenburnsRight {
+    animation: vegas-kenburnsRight ease-out;
+}
+
+@keyframes vegas-kenburnsRight {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(calc(-1 * var(--vegas-kenburns-translate)), 0); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsUpLeft */
+
+.vegas-animation-kenburnsUpLeft {
+    animation: vegas-kenburnsUpLeft ease-out;
+}
+
+@keyframes vegas-kenburnsUpLeft {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(var(--vegas-kenburns-translate), var(--vegas-kenburns-translate)); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsUpRight */
+
+.vegas-animation-kenburnsUpRight {
+    animation: vegas-kenburnsUpRight ease-out;
+}
+
+@keyframes vegas-kenburnsUpRight {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(calc(-1 * var(--vegas-kenburns-translate)), var(--vegas-kenburns-translate)); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsDownLeft */
+
+.vegas-animation-kenburnsDownLeft {
+    animation: vegas-kenburnsDownLeft ease-out;
+}
+
+@keyframes vegas-kenburnsDownLeft {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(var(--vegas-kenburns-translate), calc(-1 * var(--vegas-kenburns-translate))); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* kenburnsDownRight */
+
+.vegas-animation-kenburnsDownRight {
+    animation: vegas-kenburnsDownRight ease-out;
+}
+
+@keyframes vegas-kenburnsDownRight {
+    0%   { transform: scale(var(--vegas-kenburns-scale)) translate(calc(-1 * var(--vegas-kenburns-translate)), calc(-1 * var(--vegas-kenburns-translate))); }
+    100% { transform: scale(1) translate(0, 0); }
 }

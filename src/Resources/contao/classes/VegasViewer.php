@@ -27,7 +27,7 @@ class VegasViewer extends ContentElement{
 
 		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
-			
+
 			$objTemplate = new BackendTemplate('be_wildcard');
 			$objTemplate->wildcard = '';
 
@@ -35,18 +35,17 @@ class VegasViewer extends ContentElement{
 			{
 				$objTemplate->title ='['. $objVegas->id.'] - '. $objVegas->title;
 			}
-		
+
 			return($objTemplate->parse());
-			}
-		
+		}
+
 		return parent::generate();
 	}
 
 
 	protected function compile(): void
 	{
-		
-		$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/jonnyspvegas/vegas/vegas.min.js';
+
 		$GLOBALS['TL_CSS'][] = 		  'bundles/jonnyspvegas/vegas/vegas.css';
 
 		$config = '';
@@ -57,7 +56,7 @@ class VegasViewer extends ContentElement{
 			return;
 		}
 
-		$config .= '$("'.html_entity_decode($vegas->target).'").vegas(';
+		$config .= 'vegas("'.html_entity_decode($vegas->target).'",';
 			$slides['preload'] = boolval($vegas->preload);
 			$slides['timer'] = boolval($vegas->timer);
 			$slides['autoplay'] = boolval($vegas->autoplay);
@@ -89,7 +88,7 @@ class VegasViewer extends ContentElement{
 			}
 
 			$images = VegasSlidesModel::findBy(array('pid=?', 'published=?'),array($vegas->id, '1'),array('order'=>'sorting ASC'));
-			
+
 			if (null !== $images){
 				foreach ($images as $key => $value) {
 
@@ -115,7 +114,7 @@ class VegasViewer extends ContentElement{
 			}
 			$config .= json_encode($slides);
 			unset($slides);
-		
+
 		$config .='	);';
 
 		$this->Template->vegasconfig = $config;
