@@ -45,11 +45,13 @@ class tl_content_vegas extends Backend
 	public function editVegas(DataContainer $dc): string
 	{
 		$this->loadLanguageFile('tl_vegas');
+        if ($dc->value < 1)
+        {
+            return '';
+        }
 		$title = sprintf($GLOBALS['TL_LANG']['tl_vegas']['editheader'][1], $dc->value);
-		$href = System::getContainer()->get('router')->generate('contao_backend', array('do'=>'vegas', 'table'=>'tl_vegas','act'=>'edit', 'id'=>$dc->value , 'popup'=>'1', 'nb'=>'1'));
-
-		return ' <a href="' . StringUtil::specialcharsUrl($href) . '" title="' . StringUtil::specialchars($title) . '" onclick="Backend.openModalIframe({\'title\':\'' . StringUtil::specialchars(str_replace("'", "\\'", $title)) . '\',\'url\':this.href});return false">' . Image::getHtml('alias.svg', $title) . '</a>';
-
+		$href = System::getContainer()->get('router')->generate('contao_backend', array('do'=>'vegas', 'table'=>'tl_vegas', 'act'=>'edit', 'id'=>$dc->value, 'popup'=>'1', 'nb'=>'1'));
+		return ' <a href="' . StringUtil::specialcharsUrl($href) . '" onclick="Backend.openModalIframe({\'title\':\'' . StringUtil::specialchars(str_replace("'", "\\'", $title)) . '\',\'url\':this.href});return false">' . Image::getHtml('edit.svg', $title) . '</a>';
 	}
 
 }
