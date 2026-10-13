@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2005-2024 Jonny Spitzner
+ * Copyright (c) 2005-2026 Jonny Spitzner
  *
  * @license LGPL-3.0+
 */
@@ -13,6 +13,7 @@ use Contao\FilesModel;
 use Contao\Image;
 use Contao\System;
 use Contao\Image\ResizeConfiguration;
+use Contao\CoreBundle\DataContainer\RecordLabel;
 
 /**
  * Table tl_recipes
@@ -48,13 +49,13 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 		   'panelLayout'             => 'filter;search,limit',
 		   'headerFields'            => array('title','target','preload','autoplay','looop','shuffle','delay','timer','overlay','align','valign','cover','color','transition','transitionDuration','firstTransition','firstTransitionDuration','animation','animationDuration'),
 		   'defaultSearchField'      => 'title',
-		   'disableGrouping'         => true,
-			'child_record_callback'   => array('tl_vegas_slides', 'listVegasSlides')
+		   'disableGrouping'         => true 
         ),
 		'label' => array
 		(
-			'fields'                  => array('title'),
-			'format'                  => '%s'
+			'fields'                  => array(''),
+			'format'                  => '%s',
+			'label_callback'          => array('tl_vegas_slides', 'listVegasSlides')
 		)
 
 	),
@@ -191,10 +192,9 @@ $GLOBALS['TL_DCA']['tl_vegas_slides'] = array
 
 class tl_vegas_slides extends Backend{
 	
-	public function listVegasSlides($arrRow)	{
+	public function listVegasSlides($arrRow, $label)	{
 		$this->loadLanguageFile('tl_vegas_slides');
 		
-		$imagestring = '';
 
 		$objFile = FilesModel::findByUuid($arrRow['src']);
 		$projectDir = System::getContainer()->getParameter('kernel.project_dir');
@@ -203,7 +203,7 @@ class tl_vegas_slides extends Backend{
 		
 			if ($objFile !== null && file_exists($projectDir . '/' . $objFile->path))
 			{
-				$imagestring = Image::getHtml(
+				$label = Image::getHtml(
 					System::getContainer()
 						->get('contao.image.factory')
 						->create(
@@ -220,8 +220,7 @@ class tl_vegas_slides extends Backend{
 	
 		}
 
-	
-		return $imagestring. '
+		$label = $label. '
 			   <table style="margin-left:110px;" class="tl_header_table">
                <tr><th><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['title'][0].':</span></th><th>'.$arrRow['title']. '</th></tr>
  			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['transition'][0].':</span></td><td>'.$arrRow['transition']. '</td></tr>
@@ -229,6 +228,9 @@ class tl_vegas_slides extends Backend{
  			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['align'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['align']][0]. '</td></tr>
  			   <tr><td><span class="tl_label">'.$GLOBALS['TL_LANG']['tl_vegas_slides']['valign'][0].':</span></td><td>'.$GLOBALS['TL_LANG']['tl_vegas_slides'][$arrRow['valign']][0]. '</td></tr>
 			   </table>';
+
+	
+		return RecordLabel::fromHtml($label);
 
 	}
 
