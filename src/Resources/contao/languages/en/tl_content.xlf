@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/en/tl_content.xlf" source-language="en" target-language="en">
+    <body>
+      <!-- Fields -->
+      <trans-unit id="tl_content.vegas.0">
+        <source>Vegas</source>
+        <target>Vegas</target>
+      </trans-unit>
+      <trans-unit id="tl_content.vegas.1">
+        <source>Please select a slideshow from the list.</source>
+        <target>Please select a slideshow from the list!</target>
+      </trans-unit>
+
+      <!-- Legends -->
+      <trans-unit id="tl_content.vegas_legend">
+        <source>Vegas settings</source>
+        <target>Vegas</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

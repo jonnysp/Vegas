@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/en/modules.xlf" source-language="en" target-language="en">
+    <body>
+      <!-- Backend Navigation Module (MOD) -->
+      <trans-unit id="MOD.vegas.0">
+        <source>Vegas 2</source>
+        <target>Vegas 2</target>
+      </trans-unit>
+      <trans-unit id="MOD.vegas.1">
+        <source>The Background SlideShow</source>
+        <target>The Background SlideShow</target>
+      </trans-unit>
+
+      <!-- Content Element (CTE) Type Definition -->
+      <trans-unit id="CTE.vegas.0">
+        <source>Vegas 2</source>
+        <target>Vegas 2</target>
+      </trans-unit>
+      <trans-unit id="CTE.vegas.1">
+        <source>The Background SlideShow</source>
+        <target>The Background SlideShow</target>
+      </trans-unit>
+
+      <!-- Frontend Module (FMD) Type Definition -->
+      <trans-unit id="FMD.vegas.0">
+        <source>Vegas 2</source>
+        <target>Vegas 2</target>
+      </trans-unit>
+      <trans-unit id="FMD.vegas.1">
+        <source>The Background SlideShow</source>
+        <target>The Background SlideShow</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

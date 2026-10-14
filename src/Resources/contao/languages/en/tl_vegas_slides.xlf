@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/en/tl_vegas_slides.xlf" source-language="en" target-language="en">
+    <body>
+      <!-- Fields -->
+      <trans-unit id="tl_vegas_slides.title.0">
+        <source>Title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.title.1">
+        <source>Please enter the title.</source>
+        <target>Please enter the title here.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.src.0">
+        <source>Image</source>
+        <target>Image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.src.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.transition.0">
+        <source>Transition</source>
+        <target>Transition</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.transition.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.transitionDuration.0">
+        <source>Transition duration</source>
+        <target>Transition duration</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.transitionDuration.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.animation.0">
+        <source>Animation</source>
+        <target>Animation</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.animation.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.animationDuration.0">
+        <source>Animation duration</source>
+        <target>Animation duration</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.animationDuration.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.align.0">
+        <source>Horizontal alignment</source>
+        <target>Horizontal alignment</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.align.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.valign.0">
+        <source>Vertical alignment</source>
+        <target>Vertical alignment</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.valign.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <!-- References (Alignments) -->
+      <trans-unit id="tl_vegas_slides.center.0">
+        <source>centered</source>
+        <target>centered</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.right.0">
+        <source>right</source>
+        <target>right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.left.0">
+        <source>left</source>
+        <target>left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.bottom.0">
+        <source>bottom</source>
+        <target>bottom</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.top.0">
+        <source>top</source>
+        <target>top</target>
+      </trans-unit>
+
+      <!-- Time values -->
+      <trans-unit id="tl_vegas_slides.auto.0">
+        <source>Automatic</source>
+        <target>Automatic</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.1.0">
+        <source>0 seconds</source>
+        <target>0 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.1000.0">
+        <source>1 second</source>
+        <target>1 second</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.2000.0">
+        <source>2 seconds</source>
+        <target>2 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.3000.0">
+        <source>3 seconds</source>
+        <target>3 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.4000.0">
+        <source>4 seconds</source>
+        <target>4 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.5000.0">
+        <source>5 seconds</source>
+        <target>5 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.6000.0">
+        <source>6 seconds</source>
+        <target>6 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.7000.0">
+        <source>7 seconds</source>
+        <target>7 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.8000.0">
+        <source>8 seconds</source>
+        <target>8 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.9000.0">
+        <source>9 seconds</source>
+        <target>9 seconds</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.10000.0">
+        <source>10 seconds</source>
+        <target>10 seconds</target>
+      </trans-unit>
+
+      <!-- Legends -->
+      <trans-unit id="tl_vegas_slides.general_legend">
+        <source>Global settings</source>
+        <target>General settings</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.display_legend">
+        <source>Display settings</source>
+        <target>Display settings</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.transition_legend">
+        <source>Transition settings</source>
+        <target>Transition settings</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.animation_legend">
+        <source>Animation settings</source>
+        <target>Animation settings</target>
+      </trans-unit>
+      <!-- Transition Effects -->
+      <trans-unit id="tl_vegas_slides.fade.0">
+        <source>Fade</source>
+        <target>Fade</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.fade2.0">
+        <source>Fade 2</source>
+        <target>Fade 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideLeft.0">
+        <source>Slide left</source>
+        <target>Slide left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideLeft2.0">
+        <source>Slide left 2</source>
+        <target>Slide left 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideRight.0">
+        <source>Slide right</source>
+        <target>Slide right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideRight2.0">
+        <source>Slide right 2</source>
+        <target>Slide right 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideUp.0">
+        <source>Slide up</source>
+        <target>Slide up</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideUp2.0">
+        <source>Slide up 2</source>
+        <target>Slide up 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideDown.0">
+        <source>Slide down</source>
+        <target>Slide down</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.slideDown2.0">
+        <source>Slide down 2</source>
+        <target>Slide down 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.zoomIn.0">
+        <source>Zoom in</source>
+        <target>Zoom in</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.zoomIn2.0">
+        <source>Zoom in 2</source>
+        <target>Zoom in 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.zoomOut.0">
+        <source>Zoom out</source>
+        <target>Zoom out</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.zoomOut2.0">
+        <source>Zoom out 2</source>
+        <target>Zoom out 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.swirlLeft.0">
+        <source>Swirl left</source>
+        <target>Swirl left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.swirlLeft2.0">
+        <source>Swirl left 2</source>
+        <target>Swirl left 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.swirlRight.0">
+        <source>Swirl right</source>
+        <target>Swirl right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.swirlRight2.0">
+        <source>Swirl right 2</source>
+        <target>Swirl right 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.burn.0">
+        <source>Burn</source>
+        <target>Burn</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.burn2.0">
+        <source>Burn 2</source>
+        <target>Burn 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.blur.0">
+        <source>Blur</source>
+        <target>Blur</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.blur2.0">
+        <source>Blur 2</source>
+        <target>Blur 2</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.flash.0">
+        <source>Flash</source>
+        <target>Flash</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.flash2.0">
+        <source>Flash 2</source>
+        <target>Flash 2</target>
+      </trans-unit>
+
+      <!-- Ken Burns Animations -->
+      <trans-unit id="tl_vegas_slides.kenburns.0">
+        <source>Ken Burns</source>
+        <target>Ken Burns</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsUp.0">
+        <source>Ken Burns up</source>
+        <target>Ken Burns up</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsDown.0">
+        <source>Ken Burns down</source>
+        <target>Ken Burns down</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsRight.0">
+        <source>Ken Burns right</source>
+        <target>Ken Burns right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsLeft.0">
+        <source>Ken Burns left</source>
+        <target>Ken Burns left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsUpLeft.0">
+        <source>Ken Burns up left</source>
+        <target>Ken Burns up left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsUpRight.0">
+        <source>Ken Burns up right</source>
+        <target>Ken Burns up right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsDownLeft.0">
+        <source>Ken Burns down left</source>
+        <target>Ken Burns down left</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.kenburnsDownRight.0">
+        <source>Ken Burns down right</source>
+        <target>Ken Burns down right</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.random.0">
+        <source>Random</source>
+        <target>Random</target>
+      </trans-unit>
+
+      <!-- Buttons -->
+      <trans-unit id="tl_vegas_slides.new.0">
+        <source>New image</source>
+        <target>New image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.new.1">
+        <source>Create a new image</source>
+        <target>Create a new image</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.show.0">
+        <source>Image details</source>
+        <target>Image details</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.show.1">
+        <source>Show details of image ID %s</source>
+        <target>Show details of image ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.edit.0">
+        <source>Edit image</source>
+        <target>Edit image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.edit.1">
+        <source>Edit image ID %s</source>
+        <target>Edit image ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.copy.0">
+        <source>Copy image</source>
+        <target>Copy image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.copy.1">
+        <source>Copy image ID %s</source>
+        <target>Copy image ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.cut.0">
+        <source>Move image</source>
+        <target>Move image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.cut.1">
+        <source>Move image ID %s</source>
+        <target>Move image ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.delete.0">
+        <source>Delete image</source>
+        <target>Delete image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.delete.1">
+        <source>Delete image ID %s</source>
+        <target>Delete image ID %s</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.pastenew.0">
+        <source>Create a new image</source>
+        <target>Create a new image</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.pastenew.1">
+        <source>Create a new image</source>
+        <target>Create a new image</target>
+      </trans-unit>
+
+      <trans-unit id="tl_vegas_slides.toggle.0">
+        <source>ON/OFF</source>
+        <target>ON/OFF</target>
+      </trans-unit>
+      <trans-unit id="tl_vegas_slides.toggle.1">
+        <source>Toggle visibility</source>
+        <target>Toggle visibility</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
